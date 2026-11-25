@@ -1,0 +1,73 @@
+def adicionarveiculo(veiculos, id, marca, modelo, ano, placa, cor, valordiaria, disponivel ):
+    veiculo = { 'Id': id,
+                'Marca': marca,
+                'Modelo': modelo,
+                'Ano': ano ,
+                'Placa': placa ,
+                'Cor': cor ,
+                'ValorDiaria': valordiaria ,
+                'Disponivel': disponivel }
+    veiculos.append(veiculo)
+
+
+def buscarveiculo (veiculos, busca):
+    for veiculo in veiculos:
+        if veiculo ['Id'] == busca:
+            print(f' - Id = {veiculo['Id']}')
+            print(f' - Marca = {veiculo['Marca']} ')
+            print(f' - Modelo = {veiculo['Modelo']} ')
+            print(f' - Ano = {veiculo['Ano']} ')
+            print(f' - Placa = {veiculo['Placa']} ')
+            print(f' - Cor = {veiculo['Cor']} ')
+            print(f' - Valor Diária = R$ {veiculo['ValorDiaria']} ')
+            print(f' - Disponível = {veiculo['Disponivel']}\n ')
+            return
+    print('Veículo não Encontrado. ')
+
+
+
+def listarveiculos(veiculos):
+    for veiculo in veiculos:
+        print(f' - Id = {veiculo['Id']}')
+        print(f' - Marca = {veiculo['Marca']} ')
+        print(f' - Modelo = {veiculo['Modelo']} ')
+        print(f' - Ano = {veiculo['Ano']} ')
+        print(f' - Placa = {veiculo['Placa']} ')
+        print(f' - Cor = {veiculo['Cor']} ')
+        print(f' - Valor Diária = R$ {veiculo['ValorDiaria']} ')
+        print(f' - Disponível = {veiculo['Disponivel']}\n ')
+    print()
+
+
+def lerdados():
+    arquivo = open('dados.txt', 'r')
+    veiculos = []
+    linhas = arquivo.readlines()
+    for linha in linhas:
+        termo =  linha.split(';')
+        veiculo = {}
+        veiculo['Id'] = int(termo[0])
+        veiculo['Marca'] = termo[1]
+        veiculo['Modelo'] = termo[2]
+        veiculo['Ano'] = int(termo[3])
+        veiculo['Placa'] = termo[4]
+        veiculo['Cor'] = termo [5]
+        veiculo['ValorDiaria'] = float(termo[6])
+        veiculo['Disponivel'] = bool(termo[7])
+        veiculos.append(veiculo)
+    arquivo.close()
+    return veiculos
+
+
+def salvardados(veiculos):
+    arquivo = open('dados.txt', 'w')
+    for veiculo in veiculos:
+        arquivo.write(f'{veiculo['Id']};')
+        arquivo.write(f'{veiculo['Marca']};')
+        arquivo.write(f'{veiculo['Modelo']};')
+        arquivo.write(f'{veiculo['Ano']};')
+        arquivo.write(f'{veiculo['Placa']};')
+        arquivo.write(f'{veiculo['Cor']};')
+        arquivo.write(f'{veiculo['ValorDiaria']};')
+        arquivo.write(f'{veiculo['Disponivel']};\n')
+    arquivo.close()
