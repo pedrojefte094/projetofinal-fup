@@ -1,6 +1,6 @@
 from time import sleep
 from lib.menu import menuprincipal, cabecalho
-from lib.arquivo import adicionarveiculo, listarveiculos, salvardados, lerdados, buscarveiculo
+from lib.arquivo import adicionarveiculo, listarveiculos, salvardados, lerdados, buscarveiculo, atualizarveiculo
 
 veiculos = lerdados ()
 while True:
@@ -24,11 +24,23 @@ while True:
         cabecalho('Veículos Disponíveis')
         listarveiculos(veiculos)
         sleep(5)
-
     elif opc == 4:
         print('remover')
     elif opc == 5:
-        print('atualizar')
+        cabecalho('Atualizar Veículo')
+        busca = int(input("Digite o Id do veículo: "))
+        if buscarveiculo(veiculos, busca):
+            marca = input("1 - Marca: ")
+            modelo = input("2 - Modelo: ")
+            ano = int(input("3 - Ano: "))
+            placa = input("4 - Placa: ")
+            cor = input("5 - Cor: ")
+            valordiaria = float(input("6 - Valor da Diária: R$ "))
+            atualizarveiculo(veiculos, busca, marca, modelo, ano, placa, cor, valordiaria)
+            if atualizarveiculo(veiculos, busca, marca, modelo, ano, placa, cor, valordiaria):
+                print("Veículo atualizado com sucesso!")
+            else:
+                print("Não foi possível atualizar o veículo!")
     elif opc == 6:
         print('Realizar um aluguel')
     elif opc == 7:
