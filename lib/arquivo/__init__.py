@@ -21,10 +21,9 @@ def buscarveiculo (veiculos, busca):
             print(f' - Cor = {veiculo['Cor']} ')
             print(f' - Valor Diária = R$ {veiculo['ValorDiaria']} ')
             print(f' - Disponível = {veiculo['Disponivel']}\n ')
-            return
+            return True
     print('Veículo não Encontrado. ')
-
-
+    return False
 
 def listarveiculos(veiculos):
     for veiculo in veiculos:
@@ -37,6 +36,20 @@ def listarveiculos(veiculos):
         print(f' - Valor Diária = R$ {veiculo['ValorDiaria']} ')
         print(f' - Disponível = {veiculo['Disponivel']}\n ')
     print()
+
+
+def atualizarveiculo(veiculos, busca, marca, modelo, ano, placa, cor, valordiaria):
+    for veiculo in veiculos:
+        if veiculo['Id'] == busca:
+            veiculo['Marca'] = marca
+            veiculo['Modelo'] = modelo
+            veiculo['Ano'] = ano
+            veiculo['Placa'] = placa
+            veiculo['Cor'] = cor
+            veiculo['ValorDiaria'] = valordiaria
+            return True
+    print()
+    return False
 
 
 def lerdados():

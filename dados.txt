@@ -1,1 +1,2 @@
 1;Fiat;Toro;2021;PMW1777;Branca;450.0;True;
+2;Chevrolet;S10;2017;FGV2450;Branca;350.0;True;
