@@ -52,11 +52,23 @@ def atualizarveiculo(veiculos, busca, marca, modelo, ano, placa, cor, valordiari
     return False
 
 
-def lerdados():
+def removerveiculo(veiculos, busca):
+    for veiculo in veiculos:
+        if veiculo ['Id'] == busca:
+            veiculos.remove(veiculo)
+            break
+
+
+def lerdados(veiculos):
     arquivo = open('dados.txt', 'r')
-    veiculos = []
+    cont = 5000
     linhas = arquivo.readlines()
+    teste = False
     for linha in linhas:
+        if teste == False:
+            cont = int(linha)
+            teste = True
+            continue
         termo =  linha.split(';')
         veiculo = {}
         veiculo['Id'] = int(termo[0])
@@ -69,11 +81,12 @@ def lerdados():
         veiculo['Disponivel'] = bool(termo[7])
         veiculos.append(veiculo)
     arquivo.close()
-    return veiculos
+    return cont
 
 
-def salvardados(veiculos):
+def salvardados(veiculos, cont):
     arquivo = open('dados.txt', 'w')
+    arquivo.write(f'{cont}\n')
     for veiculo in veiculos:
         arquivo.write(f'{veiculo['Id']};')
         arquivo.write(f'{veiculo['Marca']};')

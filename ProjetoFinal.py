@@ -1,8 +1,10 @@
 from time import sleep
 from lib.menu import menuprincipal, cabecalho
-from lib.arquivo import adicionarveiculo, listarveiculos, salvardados, lerdados, buscarveiculo, atualizarveiculo
+from lib.arquivo import adicionarveiculo, listarveiculos, salvardados, lerdados, buscarveiculo, atualizarveiculo, removerveiculo
 
-veiculos = lerdados ()
+veiculos= []
+cont = lerdados (veiculos)
+
 while True:
     opc= menuprincipal()
 
@@ -17,15 +19,22 @@ while True:
         valordiaria = float(input('7 - Valor da Diária: R$ '))
         disponivel = True
         adicionarveiculo(veiculos, id, marca, modelo, ano, placa, cor, valordiaria, disponivel)
+
+        cont += 1
+
     elif opc == 2:
+        cabecalho ('Busca de Veículos')
         busca = int(input('Digite o código: '))
         buscarveiculo(veiculos, busca)
+        sleep(5)
     elif opc == 3:
         cabecalho('Veículos Disponíveis')
         listarveiculos(veiculos)
         sleep(5)
     elif opc == 4:
-        print('remover')
+        cabecalho('Remover Veículo')
+        busca = int(input('Digite o código: '))
+        removerveiculo(veiculos, busca)
     elif opc == 5:
         cabecalho('Atualizar Veículo')
         busca = int(input("Digite o Id do veículo: "))
@@ -42,14 +51,14 @@ while True:
             else:
                 print("Não foi possível atualizar o veículo!")
     elif opc == 6:
-        print('Realizar um aluguel')
+        cabecalho('Realizar um aluguel')
     elif opc == 7:
-        print('Devolver')
+        cabecalho('Devolver Veículo')
     elif opc == 8:
-        print('Carregar e Salvar')
+        cabecalho('Carregar e Salvar')
     elif opc == 0:
         print('Saindo Do Sistema...')
-        salvardados(veiculos)
+        salvardados(veiculos, cont)
         sleep(1)
         break
     else:
