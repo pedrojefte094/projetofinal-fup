@@ -78,7 +78,7 @@ def lerdados(veiculos):
         veiculo['Placa'] = termo[4]
         veiculo['Cor'] = termo [5]
         veiculo['ValorDiaria'] = float(termo[6])
-        veiculo['Disponivel'] = bool(termo[7])
+        veiculo['Disponivel'] = termo[7] = 'True'
         veiculos.append(veiculo)
     arquivo.close()
     return cont
